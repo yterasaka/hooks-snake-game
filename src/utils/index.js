@@ -22,5 +22,20 @@ export const initFields = (fieldSize, snake) => {
   const food = getFoodPosition(fieldSize, [snake]);
   fields[food.y][food.x] = "food";
 
-  return fields;
+  return fields; // 作成した配列を返却
+};
+
+export const isCollision = (fieldSize, position) => {
+  if (position.y < 0 || position.x < 0) {
+    return true;
+  }
+  if (position.y > fieldSize - 1 || position.x > fieldSize - 1) {
+    return true;
+  }
+
+  return false;
+};
+
+export const isEatingMySelf = (fields, position) => {
+  return fields[position.y][position.x] === "snake";
 };
